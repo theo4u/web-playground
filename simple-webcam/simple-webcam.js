@@ -1,3 +1,4 @@
+// https://codersblock.com/blog/motion-detection-with-javascript/
 var options = {
   audio: false,
   video: { width: 640, height: 480 }
