@@ -1,0 +1,42 @@
+<! --https://trackingjs.com/docs.html#feature-detection -->
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>tracking.js - first tracking</title>
+  <script src="tracking-min.js"></script>
+</head>
+<body>
+  <video id="myVideo" width="400" height="300" preload autoplay loop muted></video>
+  <button id="stopBtn">Stop</button>
+  <button id="startBtn">Start</button>
+  <p>
+  Anytime you start check your console to see it in action 
+  </p>
+  <script>
+  var colors = new tracking.ColorTracker(['magenta', 'cyan', 'yellow']);
+
+  colors.on('track', function(event) {
+    if (event.data.length === 0) {
+      // No colors were detected in this frame.
+    } else {
+      event.data.forEach(function(rect) {
+        console.log(rect.x, rect.y, rect.height, rect.width, rect.color);
+      });
+    }
+  });
+console.log('me again', tracking)
+  var tracker = tracking.track('#myVideo', colors,  { camera: true });
+
+
+document.getElementById('stopBtn').addEventListener("click", function(event){
+  tracker.stop();
+})
+
+document.getElementById('startBtn').addEventListener("click", function(event){
+  tracker.run();
+})
+
+  </script>
+</body>
+</html>
